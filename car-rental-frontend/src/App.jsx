@@ -37,8 +37,6 @@ function App() {
             </ProtectedRoute>
           }
         />
-
-        {/* 🔥 NEW ROUTE */}
         <Route
           path="/vehicles"
           element={

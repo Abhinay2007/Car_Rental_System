@@ -27,7 +27,7 @@ function AdminVehicles() {
     }
   };
 
-  // ✅ ADD VEHICLE
+  //  ADD VEHICLE
   const handleAdd = async () => {
     try {
       await api.post("/vehicles", {
@@ -67,7 +67,7 @@ function AdminVehicles() {
     }
   };
 
-  // ✅ DELETE VEHICLE
+  // DELETE VEHICLE
   const handleDelete = async (id) => {
     try {
       await api.delete(`/vehicles/${id}`);
@@ -88,7 +88,7 @@ function AdminVehicles() {
           🚗 Manage Vehicles
         </h1>
 
-        {/* 🔥 FORM */}
+        {/*  FORM */}
         <div className="bg-white p-6 rounded-xl shadow mb-8 grid gap-3">
 
           <input

@@ -21,7 +21,7 @@ function AdminVehicleTypes() {
     setTypes(res.data);
   };
 
-  // ✅ ADD TYPE
+  //  ADD TYPE
   const handleAdd = async () => {
     try {
       await api.post("/vehicle-types", {
@@ -48,7 +48,7 @@ function AdminVehicleTypes() {
     }
   };
 
-  // ✅ DELETE
+  //  DELETE
   const handleDelete = async (id) => {
     try {
       await api.delete(`/vehicle-types/${id}`);
@@ -68,7 +68,7 @@ function AdminVehicleTypes() {
           🚘 Vehicle Types
         </h1>
 
-        {/* 🔥 FORM */}
+        {/*   FORM */}
         <div className="bg-white p-6 rounded-xl shadow mb-8 grid gap-3">
 
           <input

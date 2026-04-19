@@ -6,7 +6,7 @@ function VehicleCard({ vehicle }) {
   const navigate = useNavigate();
   const [imageError, setImageError] = useState(false);
 
-  // ✅ Format price
+  // Format price
   const formatPrice = (price) => {
     return new Intl.NumberFormat("en-IN", {
       style: "currency",
@@ -15,7 +15,7 @@ function VehicleCard({ vehicle }) {
     }).format(price);
   };
 
-  // ✅ Vehicle type color
+  // Vehicle type color
   const getVehicleTypeColor = (type) => {
     const colors = {
       sedan: "#0066ff",
@@ -26,7 +26,7 @@ function VehicleCard({ vehicle }) {
     return colors[type?.toLowerCase()] || "#0066ff";
   };
 
-  // ✅ Placeholder image
+  // Placeholder image
   const PlaceholderImage = () => (
     <div
       style={{
@@ -49,7 +49,7 @@ function VehicleCard({ vehicle }) {
       className="vehicle-card"
       onClick={() => navigate(`/vehicles/${vehicle.vehicleId}`)}
     >
-      {/* 🔥 IMAGE */}
+      {/*  IMAGE */}
       <div
         className="vehicle-image-container"
         style={
@@ -83,7 +83,7 @@ function VehicleCard({ vehicle }) {
         </div>
       </div>
 
-      {/* 🔥 CONTENT */}
+      {/* CONTENT */}
       <div className="vehicle-content">
         {/* Header */}
         <div className="vehicle-header">

@@ -7,7 +7,7 @@ function AdminLocations() {
 
   const [form, setForm] = useState({
     name: "",
-    address: "",   // ✅ ADD
+    address: "",   
     city: "",
     phone: ""
   });
@@ -25,12 +25,12 @@ function AdminLocations() {
     }
   };
 
-  // ✅ ADD LOCATION
+  
   const handleAdd = async () => {
     try {
         await api.post("/locations", {
             name: form.name,
-            address: form.address,   // ✅ ADD
+            address: form.address,  
             city: form.city,
             phone: form.phone,
             isActive: true
@@ -40,7 +40,7 @@ function AdminLocations() {
 
       setForm({
         name: "",
-        address: "",   // ✅ ADD
+        address: "",   
         city: "",
         phone: ""
       });
@@ -53,7 +53,7 @@ function AdminLocations() {
     }
   };
 
-  // ✅ DELETE LOCATION
+  // DELETE LOCATION
   const handleDelete = async (id) => {
     try {
       await api.delete(`/locations/${id}`);
@@ -74,7 +74,7 @@ function AdminLocations() {
           📍 Manage Locations
         </h1>
 
-        {/* 🔥 FORM */}
+        {/*  FORM */}
         <div className="bg-white p-6 rounded-xl shadow mb-8 grid gap-3">
 
           <input

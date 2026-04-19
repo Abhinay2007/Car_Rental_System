@@ -8,13 +8,13 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const [user, setUser] = useState(null);
 
-  // ✅ login
+  // login
   const login = (token) => {
     localStorage.setItem("token", token);
     setToken(token);
   };
 
-  // ✅ logout
+  // logout
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user"); // clear user also
@@ -22,7 +22,7 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  // ✅ fetch user from backend using /me
+  // fetch user from backend using /me
   useEffect(() => {
     const fetchUser = async () => {
       if (!token) return;

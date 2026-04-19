@@ -13,7 +13,7 @@ function VehicleList() {
     fetchVehicles();
   }, []);
 
-  // ✅ fetch locations
+  //   fetch locations
   const fetchLocations = async () => {
     try {
       const res = await api.get("/locations");
@@ -23,7 +23,7 @@ function VehicleList() {
     }
   };
 
-  // ✅ fetch vehicles with filter
+  //   fetch vehicles with filter
   const fetchVehicles = async (locationId = "") => {
     try {
       let url = "/vehicles";
@@ -39,7 +39,7 @@ function VehicleList() {
     }
   };
 
-  // ✅ handle dropdown change
+  //   handle dropdown change
   const handleLocationChange = (e) => {
     const value = e.target.value;
     setSelectedLocation(value);
@@ -52,7 +52,7 @@ function VehicleList() {
 
       <div className="p-6 max-w-6xl mx-auto">
 
-        {/* 🔥 FILTER BAR */}
+        {/*   FILTER BAR */}
         <div className="flex justify-between items-center mb-6 flex-wrap gap-4">
 
           <h2 className="text-2xl font-bold text-gray-800">
@@ -73,7 +73,7 @@ function VehicleList() {
           </select>
         </div>
 
-        {/* 🚗 VEHICLE GRID */}
+        {/* VEHICLE GRID */}
         {vehicles.length === 0 ? (
           <p className="text-gray-500 text-center mt-10">
             No vehicles found 🚫
