@@ -57,7 +57,13 @@ function Login() {
         {/* Left side - Branding */}
         <div className="login-branding">
           <div className="brand-content">
-            <div className="brand-logo">🚗</div>
+            <div className="brand-logo">
+              <img 
+                src="/images/logo.png" 
+                alt="RENTX Logo" 
+                className="logo-image"
+              />
+            </div>
             <h1 className="brand-title">RENTX</h1>
             <p className="brand-subtitle">Premium Car Rental Experience</p>
             <p className="brand-description">
@@ -88,7 +94,7 @@ function Login() {
                     onChange={(e) => setEmail(e.target.value)}
                     disabled={loading}
                   />
-                  <span className="input-icon">✉️</span>
+                  <span className="input-icon"></span>
                 </div>
               </div>
 

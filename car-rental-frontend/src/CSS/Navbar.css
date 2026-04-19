@@ -133,6 +133,35 @@
   transform: translateY(-2px);
 }
 
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.logo-image {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Optional: Add hover effect */
+.navbar-logo:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+
 .avatar {
   width: 36px;
   height: 36px;

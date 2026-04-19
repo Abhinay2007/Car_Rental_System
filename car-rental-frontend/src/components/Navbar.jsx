@@ -19,15 +19,17 @@ function Navbar() {
   const navLinks = [
     { path: "/vehicles", label: "Vehicles" },
     { path: "/my-rentals", label: "My Rentals" },
-
-      ...(user?.role === "admin"
-    ? [
-        { path: "/admin/vehicles", label: "Admin Vehicles" },
-        { path: "/admin/locations", label: "Locations" },
-        { path: "/admin/types", label: "Vehicle Types" },
-      ]
-    : []),
   ];
+
+  const adminLinks =
+    user?.role === "admin"
+      ? [
+          { path: "/admin/dashboard", label: "Dashboard" },
+          { path: "/admin/vehicles", label: "Manage Vehicles" },
+          { path: "/admin/locations", label: "Locations" },
+          { path: "/admin/types", label: "Vehicle Types" },
+        ]
+      : [];
 
   return (
     <nav className="navbar">
@@ -39,17 +41,11 @@ function Navbar() {
           role="button"
           tabIndex={0}
         >
-          <svg
-            className="logo-icon"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M18 8h1a4 4 0 0 1 4 4v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V12a4 4 0 0 1 4-4h1M9 5a4 4 0 0 1 4-4 4 4 0 0 1 4 4" />
-            <circle cx="9" cy="17" r="2" />
-            <circle cx="15" cy="17" r="2" />
-          </svg>
+          <img
+            src="/images/logo.png"
+            alt="RentX Logo"
+            className="logo-image"
+          />
           <span className="logo-text">RentX</span>
         </div>
 
@@ -62,9 +58,25 @@ function Navbar() {
               className={`nav-link ${isActive(link.path) ? "active" : ""}`}
             >
               {link.label}
-              {isActive(link.path) && <span className="active-indicator"></span>}
             </button>
           ))}
+
+          {/* ADMIN LINKS */}
+          {adminLinks.length > 0 && (
+            <>
+              <span className="mx-2 text-gray-400">|</span>
+
+              {adminLinks.map((link) => (
+                <button
+                  key={link.path}
+                  onClick={() => navigate(link.path)}
+                  className={`nav-link ${isActive(link.path) ? "active" : ""}`}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </>
+          )}
         </div>
 
         {/* User Section */}
@@ -118,7 +130,6 @@ function Navbar() {
           <button className="mobile-logout-btn" onClick={handleLogout}>
             Logout
           </button>
-
         </div>
       )}
     </nav>

@@ -418,6 +418,22 @@ body {
   font-weight: 500;
 }
 
+
+.brand-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.brand-logo img {
+  max-width: 150px;
+  height: auto;
+  object-fit: contain;
+}
+
+
+
 /* ===== ANIMATIONS ===== */
 @keyframes slideIn {
   from {

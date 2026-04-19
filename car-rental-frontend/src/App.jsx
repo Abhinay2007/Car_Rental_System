@@ -23,7 +23,10 @@ function App() {
       <Routes>
         {/* Public Route */}
         <Route path="/" element={<Home />} />
-
+        {/* <Route
+          path="/"
+          element={token ? <Navigate to="/vehicles" /> : <Home />}
+        /> */}
 
         {/* Protected Routes */}
         <Route
@@ -84,6 +87,8 @@ function App() {
         <Route path="/admin/types" element={<AdminVehicleTypes />} />
 
         <Route path="/login" element={<Login/>}/>
+
+        <Route path="/admin/dashboard" element={<AdminDashboard />} />
 
       </Routes>
 
