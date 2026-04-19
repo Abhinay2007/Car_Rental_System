@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
-    // 🔥 Revenue report (GROUP BY month)
+    // Revenue report (GROUP BY month)
 
     @Query("SELECT SUM(p.amount) FROM Payment p WHERE p.status = 'completed'")
     Double getTotalRevenue();

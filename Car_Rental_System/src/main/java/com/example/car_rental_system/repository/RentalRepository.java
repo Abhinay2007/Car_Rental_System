@@ -13,7 +13,7 @@ public interface RentalRepository extends JpaRepository<Rental, Long> {
     List<Rental> findByVehicle_VehicleIdAndStatusIn(
             Long vehicleId, List<Rental.Status> statuses);
 
-    // ✅ NEW (IMPORTANT)
+    // NEW (IMPORTANT)
     List<Rental> findByUser_UserId(Long userId);
 
     @Query("""

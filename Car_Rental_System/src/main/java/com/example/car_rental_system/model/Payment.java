@@ -12,7 +12,7 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long paymentId;
 
-    // 🔗 Rental relation (1:1)
+    // Rental relation (1:1)
     @OneToOne
     @JoinColumn(name = "rental_id", nullable = false, unique = true)
     private Rental rental;

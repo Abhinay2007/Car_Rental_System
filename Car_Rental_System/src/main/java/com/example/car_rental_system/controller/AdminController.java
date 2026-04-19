@@ -34,7 +34,7 @@ public class AdminController {
         data.put("totalRentals", rentalRepo.count());
         data.put("totalUsers", userRepo.count());
 
-        // 💰 revenue from payments
+        // revenue from payments
         Double revenue = paymentRepo.getTotalRevenue();
         data.put("totalRevenue", revenue != null ? revenue : 0);
 

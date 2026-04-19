@@ -16,13 +16,13 @@ public class VehicleController {
     @Autowired
     private VehicleService service;
 
-    // ✅ CREATE VEHICLE
+    // CREATE VEHICLE
     @PostMapping
     public Vehicle create(@RequestBody Vehicle vehicle) {
         return service.create(vehicle);
     }
 
-    // ✅ GET ALL / FILTER BY LOCATION
+    // GET ALL / FILTER BY LOCATION
     @GetMapping
     public List<Vehicle> getVehicles(
             @RequestParam(required = false) Long locationId) {
@@ -34,20 +34,20 @@ public class VehicleController {
         return service.getAll();
     }
 
-    // ✅ GET BY ID
+    // GET BY ID
     @GetMapping("/{id}")
     public Vehicle getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
-    // ✅ UPDATE VEHICLE
+    // UPDATE VEHICLE
     @PutMapping("/{id}")
     public Vehicle updateVehicle(@PathVariable Long id,
                                  @RequestBody Vehicle updated) {
         return service.update(id, updated);
     }
 
-    // ✅ DELETE VEHICLE (SAFE)
+    // DELETE VEHICLE (SAFE)
     @DeleteMapping("/{id}")
     public String deleteVehicle(@PathVariable Long id) {
         service.delete(id);

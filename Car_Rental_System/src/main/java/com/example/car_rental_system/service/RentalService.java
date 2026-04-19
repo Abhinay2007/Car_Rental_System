@@ -32,8 +32,8 @@ public class RentalService {
         // 🔹 Get vehicle
         Vehicle vehicle = vehicleRepo.findById(vehicleId)
                 .orElseThrow(() -> new RuntimeException("Vehicle not found"));
-
-        // 🔥 CHECK DATE OVERLAP (IMPORTANT)
+                
+        // CHECK DATE OVERLAP (IMPORTANT)
         List<Rental> activeRentals =
                 rentalRepo.findByVehicle_VehicleIdAndStatusIn(
                         vehicleId,

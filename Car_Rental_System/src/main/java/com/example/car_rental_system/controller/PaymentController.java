@@ -27,7 +27,7 @@ public class PaymentController {
         return service.getAll();
     }
 
-    // 🔥 Revenue report
+    // Revenue report
     @GetMapping("/revenue")
     public List<Object[]> revenue() {
         return service.getRevenueReport();

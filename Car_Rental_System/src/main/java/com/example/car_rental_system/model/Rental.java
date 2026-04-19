@@ -12,12 +12,12 @@ public class Rental {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long rentalId;
 
-    // 🔗 User relation
+    // User relation
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    // 🔗 Vehicle relation
+    // Vehicle relation
     @ManyToOne
     @JoinColumn(name = "vehicle_id", nullable = false)
     private Vehicle vehicle;

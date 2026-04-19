@@ -15,7 +15,7 @@ public class LocationService {
     private LocationRepository repository;
 
     @Autowired
-    private LocationRepository locationRepo;   // ✅ ADD THIS
+    private LocationRepository locationRepo;   
 
     @Autowired
     private VehicleRepository vehicleRepo;

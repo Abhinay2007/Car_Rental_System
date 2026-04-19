@@ -19,7 +19,7 @@ public class Vehicle {
     @Column(nullable = false)
     private int year;
 
-    // 🔗 Relation with VehicleType
+    // Relation with VehicleType
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false)
     private VehicleType vehicleType;

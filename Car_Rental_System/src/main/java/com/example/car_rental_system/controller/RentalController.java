@@ -17,7 +17,7 @@ public class RentalController {
     @Autowired
     private RentalService service;
 
-    // ✅ Book vehicle (JWT-based user)
+    //  Book vehicle (JWT-based user)
     @PostMapping("/book")
     public Rental book(HttpServletRequest request,
                        @RequestParam Long vehicleId,
@@ -31,20 +31,20 @@ public class RentalController {
         return service.bookRental(userId, vehicleId, rental);
     }
 
-    // ✅ Return vehicle
+    //  Return vehicle
     @PutMapping("/{id}/return")
     public Rental returnVehicle(@PathVariable Long id,
                                 @RequestBody Rental rental) {
         return service.returnVehicle(id, rental);
     }
 
-    // ❌ (Optional) all rentals (admin use)
+    // (Optional) all rentals (admin use)
     @GetMapping
     public List<Rental> getAll() {
         return service.getAll();
     }
 
-    // ✅ NEW: get only current user's rentals
+    // NEW: get only current user's rentals
     @GetMapping("/my")
     public List<Rental> getMyRentals(HttpServletRequest request) {
 

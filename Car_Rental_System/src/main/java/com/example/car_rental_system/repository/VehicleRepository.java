@@ -10,7 +10,7 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
 
     Optional<Vehicle> findByRegNumber(String regNumber);
 
-    // ✅ ADD THIS (IMPORTANT)
+    // ADD THIS (IMPORTANT)
     List<Vehicle> findByLocation_LocationId(Long locationId);
     boolean existsByLocation_LocationId(Long locationId);
     boolean existsByVehicleType_TypeId(Long typeId);
