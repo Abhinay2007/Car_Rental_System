@@ -2,21 +2,29 @@ package com.example.car_rental_system.repository;
 
 import com.example.car_rental_system.model.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     // 🔥 Revenue report (GROUP BY month)
-    @Query(value = """
-        SELECT DATE_FORMAT(transaction_date, '%Y-%m') AS month,
-               COUNT(payment_id) AS total_payments,
-               SUM(amount) AS revenue
-        FROM payments
-        WHERE status = 'completed'
-        GROUP BY month
-        ORDER BY month DESC
-    """, nativeQuery = true)
+
+    @Query("SELECT SUM(p.amount) FROM Payment p WHERE p.status = 'completed'")
+    Double getTotalRevenue();
+
+    @Query("""
+        SELECT MONTH(p.transactionDate), SUM(p.amount)
+        FROM Payment p
+        WHERE p.status = 'completed'
+        GROUP BY MONTH(p.transactionDate)
+        ORDER BY MONTH(p.transactionDate)
+        """)
     List<Object[]> getMonthlyRevenue();
+
+    @Modifying
+    @Transactional
+    void deleteByRental_Vehicle_VehicleId(Long vehicleId);
 }

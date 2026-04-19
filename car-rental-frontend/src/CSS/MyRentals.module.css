@@ -1,0 +1,495 @@
+/* Container & Layout */
+.container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding-bottom: 60px;
+}
+
+.mainContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* Header Section */
+.headerSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 50px;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  animation: slideDown 0.6s ease-out;
+}
+
+.headerContent {
+  flex: 1;
+}
+
+.mainTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin: 0;
+  letter-spacing: -1px;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 8px 0 0 0;
+}
+
+.rentalCount {
+  text-align: center;
+  color: white;
+}
+
+.countBadge {
+  display: inline-flex;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #667eea;
+  background: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.rentalCount p {
+  font-size: 0.95rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Loading State */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  color: white;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Empty State */
+.emptyState {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.emptyIcon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.emptyState h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+}
+
+.emptyState p {
+  font-size: 1rem;
+  opacity: 0.9;
+  margin: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Grid Layout */
+.rentalsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+/* Rental Card */
+.rentalCard {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rentalCard:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 25px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.vehicleModel {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0 0 5px 0;
+  letter-spacing: -0.5px;
+}
+
+.vehicleType {
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+/* Status Badge */
+.status {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.statusActive {
+  background: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+  border: 1px solid #22c55e;
+}
+
+.statusCompleted {
+  background: rgba(59, 130, 246, 0.3);
+  color: #3b82f6;
+  border: 1px solid #3b82f6;
+}
+
+.statusCancelled {
+  background: rgba(239, 68, 68, 0.3);
+  color: #ef4444;
+  border: 1px solid #ef4444;
+}
+
+.statusPending {
+  background: rgba(249, 115, 22, 0.3);
+  color: #f97316;
+  border: 1px solid #f97316;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Card Body */
+.cardBody {
+  padding: 25px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Date Section */
+.dateSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 25px;
+  border-bottom: 2px dashed #f0f0f0;
+}
+
+.dateItem {
+  flex: 1;
+}
+
+.dateLabel {
+  display: block;
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.dateValue {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+}
+
+.divider {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(180deg, transparent, #e5e7eb, transparent);
+  margin: 0 15px;
+}
+
+/* Days Left Box */
+.daysLeftBox {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  animation: slideInRight 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.daysIcon {
+  font-size: 1.8rem;
+  margin-right: 12px;
+}
+
+.daysLabel {
+  font-size: 0.8rem;
+  color: #92400e;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+  letter-spacing: 0.5px;
+}
+
+.daysValue {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #b45309;
+  margin: 3px 0 0 0;
+}
+
+/* Amount Section */
+.amountSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amountLabel {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.amountValue {
+  font-size: 1.8rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0;
+}
+
+/* Card Footer */
+.cardFooter {
+  display: flex;
+  gap: 12px;
+  padding: 20px 25px;
+  background: #f9fafb;
+  border-top: 1px solid #f0f0f0;
+}
+
+/* Pay Button */
+.payButton {
+  flex: 1;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.payButton:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+}
+
+.payButton:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.payButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.payButton.loading {
+  opacity: 0.8;
+}
+
+.buttonSpinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+/* Details Button */
+.detailsButton {
+  padding: 12px 20px;
+  background: white;
+  color: #667eea;
+  border: 2px solid #667eea;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detailsButton:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+}
+
+.detailsButton:active {
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .headerSection {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .mainTitle {
+    font-size: 2rem;
+  }
+
+  .rentalsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .dateSection {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 2px;
+    margin: 0;
+  }
+
+  .cardFooter {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContent {
+    padding: 20px 15px;
+  }
+
+  .mainTitle {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .vehicleModel {
+    font-size: 1.3rem;
+  }
+
+  .amountValue {
+    font-size: 1.5rem;
+  }
+}

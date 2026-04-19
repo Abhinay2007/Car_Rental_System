@@ -25,33 +25,45 @@ public class RentalService {
 
     public Rental bookRental(Long userId, Long vehicleId, Rental rental) {
 
+        // 🔹 Get user
         User user = userRepo.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
+        // 🔹 Get vehicle
         Vehicle vehicle = vehicleRepo.findById(vehicleId)
                 .orElseThrow(() -> new RuntimeException("Vehicle not found"));
 
-        // 🚨 Availability check
-        if (vehicle.getStatus() != Vehicle.Status.available) {
-            throw new RuntimeException("Vehicle not available");
+        // 🔥 CHECK DATE OVERLAP (IMPORTANT)
+        List<Rental> activeRentals =
+                rentalRepo.findByVehicle_VehicleIdAndStatusIn(
+                        vehicleId,
+                        List.of(Rental.Status.active, Rental.Status.pending)
+                );
+
+        for (Rental r : activeRentals) {
+
+            boolean isOverlap =
+                    !(rental.getEndDate().isBefore(r.getStartDate()) ||
+                            rental.getStartDate().isAfter(r.getEndDate()));
+
+            if (isOverlap) {
+                throw new RuntimeException("Vehicle already booked for selected dates");
+            }
         }
 
-        // Set relations
+        // 🔹 Set relations
         rental.setUser(user);
         rental.setVehicle(vehicle);
         rental.setStatus(Rental.Status.active);
 
-        // 💰 Price calculation
-        long days = ChronoUnit.DAYS.between(rental.getStartDate(), rental.getEndDate());
+        // 🔹 Calculate price
+        long days = java.time.temporal.ChronoUnit.DAYS
+                .between(rental.getStartDate(), rental.getEndDate());
 
-        BigDecimal rate = vehicle.getVehicleType().getDailyRate();
-        BigDecimal total = rate.multiply(BigDecimal.valueOf(days));
+        java.math.BigDecimal rate = vehicle.getVehicleType().getDailyRate();
+        java.math.BigDecimal total = rate.multiply(java.math.BigDecimal.valueOf(days));
 
         rental.setTotalAmount(total);
-
-        // Update vehicle status
-        vehicle.setStatus(Vehicle.Status.rented);
-        vehicleRepo.save(vehicle);
 
         return rentalRepo.save(rental);
     }
@@ -75,4 +87,10 @@ public class RentalService {
     public List<Rental> getAll() {
         return rentalRepo.findAll();
     }
+
+    public List<Rental> getByUserId(Long userId) {
+        return rentalRepo.findByUser_UserId(userId);
+    }
+
+
 }

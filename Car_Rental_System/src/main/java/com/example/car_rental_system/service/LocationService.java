@@ -2,6 +2,7 @@ package com.example.car_rental_system.service;
 
 import com.example.car_rental_system.model.Location;
 import com.example.car_rental_system.repository.LocationRepository;
+import com.example.car_rental_system.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,12 @@ public class LocationService {
 
     @Autowired
     private LocationRepository repository;
+
+    @Autowired
+    private LocationRepository locationRepo;   // ✅ ADD THIS
+
+    @Autowired
+    private VehicleRepository vehicleRepo;
 
     public Location create(Location location) {
         return repository.save(location);
@@ -27,6 +34,13 @@ public class LocationService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+
+        boolean exists = vehicleRepo.existsByLocation_LocationId(id);
+
+        if (exists) {
+            throw new RuntimeException("Cannot delete: Location has vehicles");
+        }
+
+        locationRepo.deleteById(id);
     }
 }

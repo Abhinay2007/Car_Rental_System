@@ -38,6 +38,9 @@ public class Vehicle {
         maintenance
     }
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     public Vehicle() {}
 
     // Getters & Setters
@@ -69,4 +72,12 @@ public class Vehicle {
     public Status getStatus() { return status; }
 
     public void setStatus(Status status) { this.status = status; }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
 }

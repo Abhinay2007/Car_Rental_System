@@ -2,6 +2,8 @@ package com.example.car_rental_system.service;
 
 import com.example.car_rental_system.model.VehicleType;
 import com.example.car_rental_system.repository.VehicleTypeRepository;
+import com.example.car_rental_system.repository.VehicleRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,22 +13,33 @@ import java.util.List;
 public class VehicleTypeService {
 
     @Autowired
-    private VehicleTypeRepository repository;
+    private VehicleTypeRepository typeRepo;
 
+    @Autowired
+    private VehicleRepository vehicleRepo;
+
+    // CREATE
     public VehicleType create(VehicleType type) {
-        return repository.save(type);
+        return typeRepo.save(type);
     }
 
+    // GET ALL
     public List<VehicleType> getAll() {
-        return repository.findAll();
+        return typeRepo.findAll();
     }
-
     public VehicleType getById(Long id) {
-        return repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Vehicle type not found"));
+        return typeRepo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Vehicle Type not found"));
     }
-
+    // DELETE (SAFE)
     public void delete(Long id) {
-        repository.deleteById(id);
+
+        boolean exists = vehicleRepo.existsByVehicleType_TypeId(id);
+
+        if (exists) {
+            throw new RuntimeException("Cannot delete: Type used in vehicles 🚫");
+        }
+
+        typeRepo.deleteById(id);
     }
 }

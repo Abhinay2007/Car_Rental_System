@@ -3,6 +3,7 @@ package com.example.car_rental_system.service;
 import com.example.car_rental_system.model.*;
 import com.example.car_rental_system.repository.PaymentRepository;
 import com.example.car_rental_system.repository.RentalRepository;
+import com.example.car_rental_system.repository.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class PaymentService {
 
     @Autowired
     private RentalRepository rentalRepo;
+
+    @Autowired
+    private VehicleRepository vehicleRepo;
 
     public Payment processPayment(Long rentalId, Payment payment) {
 
@@ -36,5 +40,18 @@ public class PaymentService {
 
     public List<Object[]> getRevenueReport() {
         return paymentRepo.getMonthlyRevenue();
+    }
+
+
+    public void delete(Long id) {
+
+        // 1. delete payments
+        paymentRepo.deleteByRental_Vehicle_VehicleId(id);
+
+        // 2. delete rentals
+        rentalRepo.deleteByVehicle_VehicleId(id);
+
+        // 3. delete vehicle
+        vehicleRepo.deleteById(id);
     }
 }

@@ -16,11 +16,19 @@ public class JwtFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        // ✅ STEP 1: Allow login without token
-        if (request.getRequestURI().contains("/login")) {
+        if (request.getMethod().equals("OPTIONS")) {
+            response.setStatus(HttpServletResponse.SC_OK);
             filterChain.doFilter(request, response);
             return;
         }
+
+        // ✅ STEP 1: Allow login without token
+// Allow public endpoints
+            if (request.getRequestURI().contains("/login") ||
+                request.getRequestURI().contains("/register")) {
+                filterChain.doFilter(request, response);
+                return;
+            }
 
         // ✅ STEP 2: Get Authorization header
         String authHeader = request.getHeader("Authorization");
